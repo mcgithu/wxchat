@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>wx_pro</display-name>
+  <listener>
+  	<description>ServletContextListener</description>
+  	<listener-class>com.zixue.util.PropsUtil</listener-class>
+  </listener>
+  <listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+  <!-- <servlet>
+  	<servlet-name>WxServlet</servlet-name>
+  	<servlet-class>com.zixue.WxServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>WxServlet</servlet-name>
+  	<url-pattern>/wx</url-pattern>
+  </servlet-mapping> -->
+  
+  <servlet>
+        <servlet-name>coreServlet</servlet-name>
+        <servlet-class>
+            com.zixue.servlet.CoreServlet
+        </servlet-class>
+    </servlet>
+  
+   <!--  url-pattern中配置的/coreServlet用于指定该Servlet的访问路径 -->
+    <servlet-mapping>
+        <servlet-name>coreServlet</servlet-name>
+        <url-pattern>/wx</url-pattern>
+    </servlet-mapping>
+  
+   <servlet>
+        <servlet-name>initServlet</servlet-name>
+        <servlet-class>
+            com.zixue.servlet.InitServlet
+        </servlet-class>
+      <!--   配置获取access_token所需参数appid和appsecret -->
+        <init-param>
+            <param-name>appid</param-name>
+            <param-value>appid</param-value>
+        </init-param>
+        <init-param>
+            <param-name>appsecret</param-name>
+            <param-value>appsecret</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
